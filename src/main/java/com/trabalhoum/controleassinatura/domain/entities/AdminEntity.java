@@ -1,9 +1,6 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class AdminEntity {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "admin_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long adminCode;
 }
