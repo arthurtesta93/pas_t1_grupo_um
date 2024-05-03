@@ -14,16 +14,16 @@ public class Patcher {
         Class<?> incompleteInstance= incompleteInstance.getClass();
 
         Field[] incompleteFields=incompleteInstance.getDeclaredFields();
-        System.out.println(internFields.length);
-        for(Field field : internFields){
+        System.out.println(incompleteFields.length);
+        for(Field field : incompleteFields){
             System.out.println(field.getName());
             //CANT ACCESS IF THE FIELD IS PRIVATE
             field.setAccessible(true);
 
             //CHECK IF THE VALUE OF THE FIELD IS NOT NULL, IF NOT UPDATE EXISTING INTERN
-            Object value=field.get(incompleteIntern);
+            Object value=field.get(incompleteInstance);
             if(value!=null){
-                field.set(existingIntern,value);
+                field.set(existClass,value);
             }
             //MAKE THE FIELD PRIVATE AGAIN
             field.setAccessible(false);
