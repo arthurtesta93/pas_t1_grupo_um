@@ -10,10 +10,10 @@ public class Patcher {
     public static void internPatcher(Object existInstance, Object incompleteInstance) throws IllegalAccessException {
 
         //GET THE COMPILED VERSION OF THE CLASS
-        Class<?> existClass= existInstance.getClass();
-        Class<?> incompleteInstance= incompleteInstance.getClass();
+        Class<?> existClass = existInstance.getClass();
+        Class<?> incompleteClass = incompleteInstance.getClass();
 
-        Field[] incompleteFields=incompleteInstance.getDeclaredFields();
+        Field[] incompleteFields=incompleteClass.getDeclaredFields();
         System.out.println(incompleteFields.length);
         for(Field field : incompleteFields){
             System.out.println(field.getName());
@@ -21,7 +21,7 @@ public class Patcher {
             field.setAccessible(true);
 
             //CHECK IF THE VALUE OF THE FIELD IS NOT NULL, IF NOT UPDATE EXISTING INTERN
-            Object value=field.get(incompleteInstance);
+            Object value=field.get(incompleteClass);
             if(value!=null){
                 field.set(existClass,value);
             }
