@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 @Component
 public class Patcher {
 
-    public static void internPatcher(Object existInstance, Object incompleteInstance) throws IllegalAccessException {
+    /*public static void internPatcher(Object existInstance, Object incompleteInstance) throws IllegalAccessException {
 
         //GET THE COMPILED VERSION OF THE CLASS
         Class<?> existClass= existInstance.getClass();
@@ -29,6 +29,6 @@ public class Patcher {
             field.setAccessible(false);
         }
 
-    }
+    }*/
 }
 
