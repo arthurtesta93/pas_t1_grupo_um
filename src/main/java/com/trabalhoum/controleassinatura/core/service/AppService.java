@@ -1,11 +1,14 @@
 package com.trabalhoum.controleassinatura.core.service;
 
+import com.trabalhoum.controleassinatura.core.application.DTO.ApplicationDTO;
 import com.trabalhoum.controleassinatura.core.repository.AppRepository;
 import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
 import com.trabalhoum.controleassinatura.domain.entities.dtos.AppDTO;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -20,6 +23,10 @@ public class AppService {
 
     public AppDTO get(Long id){
         return modelMapper.map(appRepository.findAllById(id),AppDTO.class);
+    }
+
+    public List<AppEntity> getAllApplications(){
+        return appRepository.findAll();
     }
 
 }
