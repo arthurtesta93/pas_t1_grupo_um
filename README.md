@@ -43,4 +43,10 @@ After to do the download of the project:
   - The terminal will open and you can start the use the system, always following the menu options.
   <hr>
 
+  ### 🛠️ Open the H2 Database console:
+  
+  - In the browser acess the path: http://localhost:8081/h2-console
+    - User: test
+    - Password: 123
+      
 ##### ⚠️Our code is avaliable on the GitHub
