@@ -1,8 +1,11 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
+import com.trabalhoum.controleassinatura.domain.entities.dtos.ClientDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,18 +14,21 @@ import lombok.NoArgsConstructor;
 public class SubscriptionEntity {
 
     @Id
-    @Column(name = "subscription_id", nullable = false)
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long subscriptionCode;
+    private Long subscriptionId;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userCode;
+    @Column(name = "client_id", nullable = false)
+    private Long clientId;
 
     @Column(name = "app_id", nullable = false)
-    private Long appCode;
+    private Long appId;
 
-    @Column(name = "expiration_date", nullable = false)
-    private Long expirationDate;
+    @Column(name = "beginning_validity", nullable = false)
+    private Date beginningValidity;
+
+    @Column(name = "end_validity", nullable = false)
+    private Date EndValidity;
 
 
 }

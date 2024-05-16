@@ -10,7 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AppDTO {
-    private Long subscriptionCode;
-    private Long userId;
+    private Long id;
+    private String name;
+    private double monthlyCost;
     private boolean isActive;
 }

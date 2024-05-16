@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 @Repository
 public interface AppRepository extends JpaRepository<AppEntity,Long> {
-    //public Optional<AppEntity> findById(Long id);
+    Long findAllById(Long id);
 }
