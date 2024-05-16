@@ -26,16 +26,16 @@ public class AppController {
         return appDTO;
     }
 
-    /*@GetMapping(value = "/app")
-    public ResponseEntity<?> getById(@RequestBody Long id) {
+    @GetMapping(value = "/app/{appId}")
+    public ResponseEntity<?> getById( @PathVariable Long appId) {
         AppDTO appFound;
         try{
-            appFound = appService.get(id);
+            appFound = appService.get(appId);
         }catch (IllegalArgumentException iae){
             return new ResponseEntity<>("App not found", HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<AppDTO>(appFound,HttpStatus.OK);
-    }*/
+        return new ResponseEntity<>(appFound, HttpStatus.OK);
+    }
 
     @GetMapping(value = "/app")
     public List<AppEntity> getAll(){

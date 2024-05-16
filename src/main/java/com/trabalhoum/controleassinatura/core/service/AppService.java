@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -21,9 +22,20 @@ public class AppService {
         return modelMapper.map(appRepository.save(appEntity), AppDTO.class);
     }
 
-    public AppDTO get(Long id){
-        return modelMapper.map(appRepository.findAllById(id),AppDTO.class);
+//    public AppDTO get(Long id){
+//        return modelMapper.map(appRepository.findAllById(id),AppDTO.class);
+//    }
+
+    public AppDTO get(Long id) {
+        Optional<AppEntity> optionalAppEntity = appRepository.findAllById(id);
+        if (optionalAppEntity.isPresent()) {
+            AppEntity appEntity = optionalAppEntity.get();
+            return modelMapper.map(appEntity, AppDTO.class);
+        } else {
+            throw new IllegalArgumentException("App not found");
+        }
     }
+
 
     public List<AppEntity> getAllApplications(){
         return appRepository.findAll();
