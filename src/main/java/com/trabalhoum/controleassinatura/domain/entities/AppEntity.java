@@ -1,5 +1,6 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
+import com.trabalhoum.controleassinatura.domain.entities.dtos.AppDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,9 @@ public class AppEntity {
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
 
+    public AppEntity(AppDTO appDTO){
+        this.subscriptionCode = appDTO.getSubscriptionCode();
+        this.userId = appDTO.getUserId();
+        this.isActive = appDTO.isActive();
+    }
 }
