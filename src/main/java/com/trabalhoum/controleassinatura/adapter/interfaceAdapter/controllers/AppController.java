@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @AllArgsConstructor
 @RestController
 public class AppController {
@@ -39,6 +41,23 @@ public class AppController {
 
     @GetMapping(value = "/app")
     public List<AppEntity> getAll(){
-        return appService.getAllApplications();
+        return appService.getAll();
+    }
+
+    @PatchMapping(value = "/app/{id}")
+    public ResponseEntity<?> upDate(@PathVariable ("id") Long id, @RequestBody AppDTO appDTO){
+        AppDTO appToUpdate;
+        try{
+            appToUpdate = modelMapper.map(appService.upDate(id, appDTO),AppDTO.class);
+            return new ResponseEntity<AppDTO>(appToUpdate,HttpStatus.OK);
+        }catch (IllegalAccessException iae){
+            System.out.println("Access Error" + iae.getMessage());
+            iae.printStackTrace();
+            return new ResponseEntity<>("Not able to upDate", HttpStatus.INTERNAL_SERVER_ERROR);
+        }catch (NullPointerException npe){
+            System.out.println("Access Error" + npe.getMessage());
+            npe.printStackTrace();
+            return new ResponseEntity<>("Access Error",HttpStatus.NOT_FOUND);
+        }
     }
 }
