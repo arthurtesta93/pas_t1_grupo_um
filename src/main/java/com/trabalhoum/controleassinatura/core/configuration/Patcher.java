@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 @Component
 public class Patcher {
 
-    /*public static void internPatcher(Object existInstance, Object incompleteInstance) throws IllegalAccessException {
+    public static void internPatcher(Object existInstance, Object incompleteInstance) throws IllegalAccessException, NoSuchFieldException {
 
         //GET THE COMPILED VERSION OF THE CLASS
         Class<?> existClass = existInstance.getClass();
@@ -24,11 +24,13 @@ public class Patcher {
             Object value=field.get(incompleteClass);
             if(value!=null){
                 field.set(existClass,value);
+                Field existingField = existClass.getDeclaredField(field.getName());
+                existingField.setAccessible(true);
+                existingField.set(existInstance, value);
+                existingField.setAccessible(false);
             }
-            //MAKE THE FIELD PRIVATE AGAIN
-            field.setAccessible(false);
         }
 
-    }*/
+    }
 }
 
