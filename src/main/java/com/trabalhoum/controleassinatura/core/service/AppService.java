@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,5 +47,10 @@ public class AppService {
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean isActive(@RequestBody Long id){
+        Optional<AppEntity> appFound = appRepository.findById(id);
+        return appFound.map(AppEntity::isActive).orElse(false);
     }
 }
