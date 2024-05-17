@@ -25,8 +25,18 @@ public class AppService {
         return modelMapper.map(appRepository.save(appEntity), AppDTO.class);
     }
 
-    public AppDTO get(Long id){
-        return modelMapper.map(appRepository.findAllById(id),AppDTO.class);
+//    public AppDTO get(Long id){
+//        return modelMapper.map(appRepository.findAllById(id),AppDTO.class);
+//    }
+
+    public AppDTO get(Long id) {
+        Optional<AppEntity> optionalAppEntity = appRepository.findAllById(id);
+        if (optionalAppEntity.isPresent()) {
+            AppEntity appEntity = optionalAppEntity.get();
+            return modelMapper.map(appEntity, AppDTO.class);
+        } else {
+            throw new IllegalArgumentException("App not found");
+        }
     }
 
     public List<AppEntity> getAll(){
