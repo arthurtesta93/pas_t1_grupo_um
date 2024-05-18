@@ -1,6 +1,5 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
-import com.trabalhoum.controleassinatura.domain.entities.dtos.AppDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +8,8 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
 
 @Getter
 @Setter

@@ -1,11 +1,12 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
-import com.trabalhoum.controleassinatura.domain.entities.dtos.ClientDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+
+import com.trabalhoum.controleassinatura.application.DTO.ClientDTO;
 
 @NoArgsConstructor
 @AllArgsConstructor

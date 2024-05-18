@@ -1,4 +1,4 @@
-package com.trabalhoum.controleassinatura.domain.entities.dtos;
+package com.trabalhoum.controleassinatura.application.DTO;
 
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;

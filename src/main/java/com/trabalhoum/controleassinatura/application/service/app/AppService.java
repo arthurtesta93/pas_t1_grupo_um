@@ -1,10 +1,10 @@
-package com.trabalhoum.controleassinatura.core.service;
+package com.trabalhoum.controleassinatura.application.service.app;
 
-import com.trabalhoum.controleassinatura.core.application.DTO.ApplicationDTO;
+import com.trabalhoum.controleassinatura.adapter.interfaceAdapter.repository.AppRepository;
+import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
 import com.trabalhoum.controleassinatura.core.configuration.Patcher;
-import com.trabalhoum.controleassinatura.core.repository.AppRepository;
 import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
-import com.trabalhoum.controleassinatura.domain.entities.dtos.AppDTO;
+
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;

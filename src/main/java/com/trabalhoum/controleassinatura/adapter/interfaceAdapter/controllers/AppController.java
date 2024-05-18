@@ -1,11 +1,10 @@
 package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
-import com.trabalhoum.controleassinatura.core.application.DTO.ApplicationDTO;
-import com.trabalhoum.controleassinatura.core.service.AppService;
+import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
+import com.trabalhoum.controleassinatura.application.service.app.AppService;
 import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
-import com.trabalhoum.controleassinatura.domain.entities.dtos.AppDTO;
+
 import lombok.AllArgsConstructor;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @AllArgsConstructor
 @RestController
