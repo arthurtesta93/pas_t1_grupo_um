@@ -8,6 +8,6 @@ import java.util.Optional;
 @Repository
 public interface AppRepository extends JpaRepository<AppEntity,Long> {
 
-    Long findAllById(Long id);
+    Optional<AppEntity> findAllById(Long id);
     Optional<AppEntity> findById(Long id);
 }

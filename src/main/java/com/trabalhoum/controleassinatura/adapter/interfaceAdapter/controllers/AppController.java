@@ -29,7 +29,8 @@ public class AppController {
     }
 
     @GetMapping(value = "/app/{appId}")
-    public ResponseEntity<?> getById( @PathVariable Long appId) {
+    public ResponseEntity<?> getById( @PathVariable("appId") Long appId) {
+        System.out.println("entrei");
         AppDTO appFound;
         try{
             appFound = appService.get(appId);
