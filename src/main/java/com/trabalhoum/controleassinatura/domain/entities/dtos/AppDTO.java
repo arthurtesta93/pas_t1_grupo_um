@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,4 +16,5 @@ public class AppDTO {
     private String name;
     private double monthlyCost;
     private boolean isActive;
+    private List<ClientDTO> clients;
 }
