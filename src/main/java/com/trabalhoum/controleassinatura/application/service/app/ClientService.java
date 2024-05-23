@@ -4,7 +4,9 @@ import com.trabalhoum.controleassinatura.adapter.interfaceAdapter.repository.Cli
 import com.trabalhoum.controleassinatura.application.DTO.ClientDTO;
 import com.trabalhoum.controleassinatura.domain.entities.ClientEntity;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientService {
 
     ClientRepository clientRepository;
