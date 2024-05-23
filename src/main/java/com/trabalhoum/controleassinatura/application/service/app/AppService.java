@@ -22,35 +22,43 @@ public class AppService {
     private AppRepository appRepository;
     private ModelMapper modelMapper;
 
+    /*
+     * Method Save: Save the AppEntity passed by parameter in the database.
+     * @return an AppDTO
+     */
     public AppDTO save(AppEntity appEntity){
         return modelMapper.map(appRepository.save(appEntity), AppDTO.class);
     }
 
-//    public AppDTO get(Long id){
-//        return modelMapper.map(appRepository.findAllById(id),AppDTO.class);
-//    }
-
+    /*
+     * Method get: Search the appEntity by the id passed by parameter
+     * @return an AppDTO
+     */
     public AppDTO get(Long id) {
-        Optional<AppEntity> optionalAppEntity = appRepository.findAllById(id);
-        if (optionalAppEntity.isPresent()) {
-            AppEntity appEntity = optionalAppEntity.get();
-            return modelMapper.map(appEntity, AppDTO.class);
-        } else {
-            throw new IllegalArgumentException("App not found");
-        }
+        Optional<AppEntity> appEntityFound = appRepository.findAllById(id);
+        if(appEntityFound.isPresent()){
+            return modelMapper.map(appEntityFound, AppDTO.class);
+        }else
+          throw new IllegalArgumentException("App not found");
     }
 
+    /*
+     * Method get: Search the all the appEntities saved in the database
+     * @return a list of appEntity
+     */
     public List<AppEntity> getAll(){
         return appRepository.findAll();
     }
 
-    //public AppDTO setAppMonthlyCost(){}
+    /*
+    * NOT WORKING YET!!!
+    */
     public AppDTO upDate(Long id, AppDTO appDTO) throws IllegalAccessException {
         Optional<AppEntity> appFound;
         try {
-            appFound = appRepository.findById(id);
-            AppEntity appNewData = modelMapper.map(appDTO, AppEntity.class);
-            Patcher.internPatcher(appFound, appNewData);
+            appFound = appRepository.findById(id);//acha app no bd
+            AppEntity appNewData = modelMapper.map(appDTO, AppEntity.class); //appNewData recebe o appDTO com alteração
+            Patcher.internPatcher(appFound, appNewData);//patcher faz alteração
             return appDTO;
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);

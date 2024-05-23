@@ -19,13 +19,6 @@ import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
 @Table(name="App")
 public class AppEntity {
 
-    private int freeDays;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "clients_id", nullable = false)
-    private List<ClientEntity> clients;
-
-
     @Id
     @Column(name = "app_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
