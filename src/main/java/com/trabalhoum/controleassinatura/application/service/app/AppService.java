@@ -45,15 +45,13 @@ public class AppService {
     }
 
     //public AppDTO setAppMonthlyCost(){}
-    public ResponseEntity<?> upDate(Long id, AppDTO appDTO) throws IllegalAccessException {
+    public AppDTO upDate(Long id, AppDTO appDTO) throws IllegalAccessException {
         Optional<AppEntity> appFound;
         try {
             appFound = appRepository.findById(id);
             AppEntity appNewData = modelMapper.map(appDTO, AppEntity.class);
             Patcher.internPatcher(appFound, appNewData);
-            return new ResponseEntity<>(appNewData, HttpStatus.OK);
-        }catch (IllegalArgumentException iae){
-            return new ResponseEntity<>("App not found", HttpStatus.NOT_FOUND);
+            return appDTO;
         } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
