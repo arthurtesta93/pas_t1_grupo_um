@@ -1,26 +1,28 @@
 package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
 
-import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
-import com.trabalhoum.controleassinatura.application.DTO.ClientDTO;
-import com.trabalhoum.controleassinatura.application.service.app.ClientService;
+import com.trabalhoum.controleassinatura.application.dto.AppDTO;
+import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
+import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
+import com.trabalhoum.controleassinatura.application.service.ClientService;
+import com.trabalhoum.controleassinatura.application.service.ClientService;
+import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
 import com.trabalhoum.controleassinatura.domain.entities.ClientEntity;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 public class ClientController {
 
     private ClientService clientService;
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @PostMapping(value = "/client")
     public ResponseEntity<String> save(@RequestBody ClientDTO clientDTO){
@@ -33,17 +35,42 @@ public class ClientController {
     }
 
     /*
-     * Method getById: Search an AppEntity by the id passed by path
+     * Method getById: Search an ClientEntity by the id passed by path
      * @return ResponseEntity<?>
      */
     @GetMapping(value = "/client/{clientId}")
     public ResponseEntity<?> getById(@PathVariable("clientId") Long clientId) {
-        AppDTO appFound;
+        ClientDTO appFound;
         try{
             appFound = clientService.get(clientId);
         }catch (IllegalArgumentException iae){
             return new ResponseEntity<>("Client not found", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(appFound, HttpStatus.OK);
+    }
+
+    /*
+     * Method getAll: Search all the ClientEntities registered in the database
+     * @return a list of ClientEntity
+     */
+    @GetMapping(value = "/client")
+    public List<ClientEntity> getAll(){
+        return clientService.getAll();
+    }
+
+    /*
+     * NOT WORKING YET!!!
+     */
+    @PatchMapping(value = "/client/{id}")
+    public ResponseEntity<?> upDate(@PathVariable ("id") Long id, @RequestBody ClientDTO clientDTO){
+        ClientDTO clientToUpdate;
+        try{
+            clientToUpdate = modelMapper.map(clientService.upDate(id, clientDTO),AppDTO.class);
+            return new ResponseEntity<AppDTO>(clientToUpdate,HttpStatus.OK);
+        }catch (IllegalAccessException iae){
+            System.out.println("Access Error" + iae.getMessage());
+            iae.printStackTrace();
+            return new ResponseEntity<>("Not able to upDate", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
