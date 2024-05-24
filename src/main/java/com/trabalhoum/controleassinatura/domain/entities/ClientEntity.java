@@ -1,5 +1,6 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
+import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,5 +25,10 @@ public class ClientEntity {
 
   @Column(name="email", nullable = false)
   private String clientEmail;
+
+  public ClientEntity(ClientDTO clientDTO){
+    this.clientName = clientDTO.getClientName();
+    this.clientEmail = clientDTO.getClientEmail();
+  }
 
 }
