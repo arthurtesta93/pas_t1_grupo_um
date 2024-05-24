@@ -1,11 +1,11 @@
 package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
 
-import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
-import com.trabalhoum.controleassinatura.application.DTO.ClientDTO;
+import com.trabalhoum.controleassinatura.application.dto.AppDTO;
+import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
 import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
 import com.trabalhoum.controleassinatura.application.service.ClientService;
-import com.trabalhoum.controleassinatura.application.service.app.ClientService;
+import com.trabalhoum.controleassinatura.application.service.ClientService;
 import com.trabalhoum.controleassinatura.domain.entities.ClientEntity;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -35,7 +35,7 @@ public class ClientController {
     }
 
     /*
-     * Method getById: Search an AppEntity by the id passed by path
+     * Method getById: Search an ClientEntity by the id passed by path
      * @return ResponseEntity<?>
      */
     @GetMapping(value = "/client/{clientId}")
