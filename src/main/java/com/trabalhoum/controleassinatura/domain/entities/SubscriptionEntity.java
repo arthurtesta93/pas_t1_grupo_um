@@ -14,6 +14,8 @@ import com.trabalhoum.controleassinatura.application.DTO.ClientDTO;
 @Table(name = "subscription")
 public class SubscriptionEntity {
 
+    private int freeDays;
+
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
