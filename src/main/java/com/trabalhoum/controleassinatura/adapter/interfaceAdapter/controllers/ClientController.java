@@ -19,6 +19,11 @@ public class ClientController {
 
     @PostMapping(value = "client")
     public ResponseEntity<String> save(@RequestBody ClientDTO clientDTO){
-        return null;
+        if(clientDTO.getClientEmail() == null || clientDTO.getClientEmail().isEmpty()) {
+            return ResponseEntity.badRequest().body("Client name is required");
+        }
+        clientService.save(modelMapper.map(clientDTO, ClientEntity.class));
+        return ResponseEntity.ok("Client created successfully");
+
     }
 }
