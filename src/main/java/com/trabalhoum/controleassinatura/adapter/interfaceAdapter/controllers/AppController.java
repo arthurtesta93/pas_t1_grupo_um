@@ -25,9 +25,12 @@ public class AppController {
     * @return an AppDTO
     */
     @PostMapping(value = "/app")
-    public AppDTO save (@RequestBody AppDTO appDTO){
-        appService.save(new AppEntity(appDTO));
-        return appDTO;
+    public ResponseEntity<String> save (@RequestBody AppDTO appDTO){
+        if(appDTO.getName() == null || appDTO.getName().isEmpty()) {
+            return ResponseEntity.badRequest().body("App name is required");
+        }
+        appService.save(modelMapper.map(appDTO, AppEntity.class));
+        return ResponseEntity.ok("App created successfully");
     }
 
     /*
