@@ -6,6 +6,7 @@ import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
 import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
 import com.trabalhoum.controleassinatura.application.service.ClientService;
 import com.trabalhoum.controleassinatura.application.service.ClientService;
+import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
 import com.trabalhoum.controleassinatura.domain.entities.ClientEntity;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 public class ClientController {
@@ -47,5 +51,14 @@ public class ClientController {
             return new ResponseEntity<>("Client not found", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(appFound, HttpStatus.OK);
+    }
+
+    /*
+     * Method getAll: Search all the ClientEntities registered in the database
+     * @return a list of ClientEntity
+     */
+    @GetMapping(value = "/client")
+    public List<ClientEntity> getAll(){
+        return clientService.getAll();
     }
 }
