@@ -1,7 +1,7 @@
 package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
-import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
-import com.trabalhoum.controleassinatura.application.service.app.AppService;
+import com.trabalhoum.controleassinatura.application.dto.AppDTO;
+import com.trabalhoum.controleassinatura.application.service.AppService;
 import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
 
 import lombok.AllArgsConstructor;
