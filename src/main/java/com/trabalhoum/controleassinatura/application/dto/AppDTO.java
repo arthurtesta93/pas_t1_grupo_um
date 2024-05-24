@@ -1,4 +1,4 @@
-package com.trabalhoum.controleassinatura.application.DTO;
+package com.trabalhoum.controleassinatura.application.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

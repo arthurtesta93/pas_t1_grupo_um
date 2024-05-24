@@ -1,5 +1,6 @@
 package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
+
 import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
 import com.trabalhoum.controleassinatura.application.DTO.ClientDTO;
 import com.trabalhoum.controleassinatura.application.service.app.ClientService;
@@ -12,17 +13,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 public class ClientController {
 
-    ClientService clientService;
+    private ClientService clientService;
     ModelMapper modelMapper;
 
-    @PostMapping(value = "client")
-    public ClientDTO save(ClientEntity clientEntity){
-        return modelMapper.map(clientService.save(clientEntity), ClientDTO.class);
+    @PostMapping(value = "/client")
+    public ResponseEntity<String> save(@RequestBody ClientDTO clientDTO){
+        if(clientDTO.getClientEmail() == null || clientDTO.getClientEmail().isEmpty()) {
+            return ResponseEntity.badRequest().body("Client name is required");
+        }
+        clientService.save(modelMapper.map(clientDTO, ClientEntity.class));
+        return ResponseEntity.ok("Client created successfully");
+
     }
 
     /*

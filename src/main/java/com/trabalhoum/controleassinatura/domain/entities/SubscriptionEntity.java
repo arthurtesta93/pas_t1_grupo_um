@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-import com.trabalhoum.controleassinatura.application.DTO.ClientDTO;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

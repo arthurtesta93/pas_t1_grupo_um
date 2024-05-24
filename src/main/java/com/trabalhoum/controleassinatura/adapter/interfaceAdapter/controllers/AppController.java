@@ -1,7 +1,7 @@
 package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
-import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
-import com.trabalhoum.controleassinatura.application.service.app.AppService;
+import com.trabalhoum.controleassinatura.application.dto.AppDTO;
+import com.trabalhoum.controleassinatura.application.service.AppService;
 import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
 
 import lombok.AllArgsConstructor;
@@ -25,9 +25,12 @@ public class AppController {
     * @return an AppDTO
     */
     @PostMapping(value = "/app")
-    public AppDTO save (@RequestBody AppDTO appDTO){
-        appService.save(new AppEntity(appDTO));
-        return appDTO;
+    public ResponseEntity<String> save (@RequestBody AppDTO appDTO){
+        if(appDTO.getName() == null || appDTO.getName().isEmpty()) {
+            return ResponseEntity.badRequest().body("App name is required");
+        }
+        appService.save(modelMapper.map(appDTO, AppEntity.class));
+        return ResponseEntity.ok("App created successfully");
     }
 
     /*
