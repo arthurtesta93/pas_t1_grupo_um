@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientController {
 
     private ClientService clientService;
-    private ModelMapper modelMapper;
+    ModelMapper modelMapper;
 
-    @PostMapping(value = "client")
+    @PostMapping(value = "/client")
     public ResponseEntity<String> save(@RequestBody ClientDTO clientDTO){
         if(clientDTO.getClientEmail() == null || clientDTO.getClientEmail().isEmpty()) {
             return ResponseEntity.badRequest().body("Client name is required");

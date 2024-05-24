@@ -16,7 +16,7 @@ import lombok.Setter;
 public class ClientEntity {
 
   @Id
-  @Column(name="user_id", nullable = false)
+  @Column(name="client_id", nullable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long clientId;
 
