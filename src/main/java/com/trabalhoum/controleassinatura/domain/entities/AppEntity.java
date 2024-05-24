@@ -1,14 +1,12 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
-import com.trabalhoum.controleassinatura.domain.entities.dtos.AppDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.trabalhoum.controleassinatura.application.dto.AppDTO;
 
 @Getter
 @Setter
@@ -17,13 +15,6 @@ import java.util.List;
 @Entity
 @Table(name="App")
 public class AppEntity {
-
-    private int freeDays;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "clients_id", nullable = false)
-    private List<ClientEntity> clients;
-
 
     @Id
     @Column(name = "app_id", nullable = false)

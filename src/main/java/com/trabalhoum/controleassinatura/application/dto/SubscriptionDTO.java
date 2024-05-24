@@ -1,6 +1,5 @@
-package com.trabalhoum.controleassinatura.domain.entities.dtos;
+package com.trabalhoum.controleassinatura.application.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

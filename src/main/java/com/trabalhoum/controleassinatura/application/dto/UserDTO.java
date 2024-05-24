@@ -1,4 +1,4 @@
-package com.trabalhoum.controleassinatura.domain.entities.dtos;
+package com.trabalhoum.controleassinatura.application.dto;
 
 public class UserDTO {
     private String userName;

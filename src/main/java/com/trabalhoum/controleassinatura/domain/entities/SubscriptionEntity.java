@@ -1,6 +1,5 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
-import com.trabalhoum.controleassinatura.domain.entities.dtos.ClientDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,8 @@ import java.util.Date;
 @Entity
 @Table(name = "subscription")
 public class SubscriptionEntity {
+
+    private int freeDays;
 
     @Id
     @Column(name = "id", nullable = false)

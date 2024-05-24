@@ -1,4 +1,4 @@
-package com.trabalhoum.controleassinatura.core.repository;
+package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.repository;
 
 import com.trabalhoum.controleassinatura.domain.entities.PaymentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
