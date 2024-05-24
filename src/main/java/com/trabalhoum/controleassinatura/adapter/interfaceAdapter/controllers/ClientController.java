@@ -1,18 +1,12 @@
 package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
-
-import com.trabalhoum.controleassinatura.application.dto.AppDTO;
-import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
 import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
 import com.trabalhoum.controleassinatura.application.service.ClientService;
-import com.trabalhoum.controleassinatura.application.service.ClientService;
-import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
 import com.trabalhoum.controleassinatura.domain.entities.ClientEntity;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -65,8 +59,8 @@ public class ClientController {
     public ResponseEntity<?> upDate(@PathVariable ("id") Long id, @RequestBody ClientDTO clientDTO){
         ClientDTO clientToUpdate;
         try{
-            clientToUpdate = modelMapper.map(clientService.upDate(id, clientDTO),AppDTO.class);
-            return new ResponseEntity<AppDTO>(clientToUpdate,HttpStatus.OK);
+            clientToUpdate = modelMapper.map(clientService.upDate(id, clientDTO),ClientDTO.class);
+            return new ResponseEntity<ClientDTO>(clientToUpdate,HttpStatus.OK);
         }catch (IllegalAccessException iae){
             System.out.println("Access Error" + iae.getMessage());
             iae.printStackTrace();
