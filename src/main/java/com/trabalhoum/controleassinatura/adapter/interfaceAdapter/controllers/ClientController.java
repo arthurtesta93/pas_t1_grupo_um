@@ -3,6 +3,8 @@ package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
 import com.trabalhoum.controleassinatura.application.DTO.AppDTO;
 import com.trabalhoum.controleassinatura.application.DTO.ClientDTO;
+import com.trabalhoum.controleassinatura.application.dto.ClientDTO;
+import com.trabalhoum.controleassinatura.application.service.ClientService;
 import com.trabalhoum.controleassinatura.application.service.app.ClientService;
 import com.trabalhoum.controleassinatura.domain.entities.ClientEntity;
 import lombok.AllArgsConstructor;
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientController {
 
     private ClientService clientService;
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @PostMapping(value = "/client")
     public ResponseEntity<String> save(@RequestBody ClientDTO clientDTO){
@@ -38,7 +40,7 @@ public class ClientController {
      */
     @GetMapping(value = "/client/{clientId}")
     public ResponseEntity<?> getById(@PathVariable("clientId") Long clientId) {
-        AppDTO appFound;
+        ClientDTO appFound;
         try{
             appFound = clientService.get(clientId);
         }catch (IllegalArgumentException iae){
