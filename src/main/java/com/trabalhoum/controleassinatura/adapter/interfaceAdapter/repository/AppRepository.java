@@ -10,4 +10,6 @@ public interface AppRepository extends JpaRepository<AppEntity,Long> {
 
     Optional<AppEntity> findAllById(Long id);
     Optional<AppEntity> findById(Long id);
+
+    Iterable<? extends Long> findAll(Long appId);
 }
