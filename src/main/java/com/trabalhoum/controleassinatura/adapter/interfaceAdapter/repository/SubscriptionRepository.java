@@ -10,4 +10,6 @@ import java.util.Optional;
 @Repository
 public interface SubscriptionRepository extends JpaRepository<SubscriptionEntity, Long> {
     public Optional<SubscriptionEntity> findById(Long id);
+
+    Iterable<? extends Long> findAll(Long subscriptionId);
 }
