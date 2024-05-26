@@ -15,6 +15,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@RequestMapping(value = "/servcad")
 public class AppController {
 
     private AppService appService;
@@ -24,7 +25,7 @@ public class AppController {
     * Method Save: Save the AppEntity passed by perameter as AppDTO
     * @return an AppDTO
     */
-    @PostMapping(value = "/app")
+    @PostMapping(value = "/aplicativos")
     public ResponseEntity<?> save (@RequestBody AppDTO appDTO){
         if(appDTO.getName() == null || appDTO.getName().isEmpty()) {
             return ResponseEntity.badRequest().body("App name is required");
@@ -38,7 +39,7 @@ public class AppController {
      * Method getById: Search an AppEntity by the id passed by path
      * @return ResponseEntity<?>
      */
-    @GetMapping(value = "/app/{appId}")
+    @GetMapping(value = "/aplicativos/{appId}")
     public ResponseEntity<?> getById( @PathVariable("appId") Long appId) {
         AppDTO appFound;
         try{
@@ -53,7 +54,7 @@ public class AppController {
      * Method getAll: Search all the AppEntities registered in the database
      * @return a list of AppEntity
      */
-    @GetMapping(value = "/app")
+    @GetMapping(value = "/aplicativos")
     public List<AppEntity> getAll(){
         return appService.getAll();
     }
@@ -61,7 +62,7 @@ public class AppController {
     /*
     * NOT WORKING YET!!!
     */
-    @PatchMapping(value = "/app/{id}")
+    @PatchMapping(value = "/aplicativos/{id}")
     public ResponseEntity<?> upDate(@PathVariable ("id") Long id, @RequestBody AppDTO appDTO){
         AppDTO appToUpdate;
         try{
