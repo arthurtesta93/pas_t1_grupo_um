@@ -67,4 +67,13 @@ public class AppService {
         Optional<AppEntity> appFound = appRepository.findById(id);
         return appFound.map(AppEntity::isActive).orElse(false);
     }
+
+    public Object updateCost(Long id, double monthlyCost) {
+        Optional<AppEntity> appFound = appRepository.findById(id);
+        if(appFound.isPresent()){
+            appFound.get().setMonthlyCost(monthlyCost);
+            return appRepository.save(appFound.get());
+        } else
+            throw new IllegalArgumentException("App not found");
+    }
 }

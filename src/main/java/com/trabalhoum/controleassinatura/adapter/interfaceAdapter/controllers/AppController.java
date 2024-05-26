@@ -1,5 +1,6 @@
 package com.trabalhoum.controleassinatura.adapter.interfaceAdapter.controllers;
 
+import com.trabalhoum.controleassinatura.application.dto.AppCostDTO;
 import com.trabalhoum.controleassinatura.application.dto.AppDTO;
 import com.trabalhoum.controleassinatura.application.service.AppService;
 import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
@@ -68,10 +69,19 @@ public class AppController {
         try{
             appToUpdate = modelMapper.map(appService.upDate(id, appDTO),AppDTO.class);
             return new ResponseEntity<AppDTO>(appToUpdate,HttpStatus.OK);
-        }catch (IllegalAccessException iae){
+        } catch (IllegalAccessException iae){
             System.out.println("Access Error" + iae.getMessage());
             iae.printStackTrace();
             return new ResponseEntity<>("Not able to upDate", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping(value = "/aplicativos/atualizacusto/{id}")
+    public ResponseEntity<?> updateCost(@PathVariable ("id") Long id, @RequestBody AppCostDTO cost){
+        AppDTO appToUpdate;
+        double monthlyCost = cost.getMonthlyCost();
+        appToUpdate = modelMapper.map(appService.updateCost(id, monthlyCost),AppDTO.class);
+        return new ResponseEntity<>(appToUpdate,HttpStatus.OK);
+    }
+
 }
