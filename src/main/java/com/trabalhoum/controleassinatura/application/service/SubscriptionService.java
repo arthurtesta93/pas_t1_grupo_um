@@ -38,7 +38,11 @@ public class SubscriptionService {
         }
         throw new IllegalArgumentException("Subscription not found");
         }
+
+    public List<SubscriptionEntity> getAll() {
+        return subscriptionRepository.findAll();
     }
+}
 
 
 

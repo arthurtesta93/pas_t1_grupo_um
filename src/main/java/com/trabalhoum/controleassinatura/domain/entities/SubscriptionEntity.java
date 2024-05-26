@@ -1,5 +1,6 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
+import com.trabalhoum.controleassinatura.application.dto.SubscriptionDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +33,16 @@ public class SubscriptionEntity {
     private Date beginningValidity;
 
     @Column(name = "end_validity", nullable = false)
-    private Date EndValidity;
+    private Date endValidity;
+
+
+    public SubscriptionEntity(SubscriptionDTO subscriptionDTO){
+        this.clientId = subscriptionDTO.getClientId();
+        this.appId = subscriptionDTO.getAppId();
+        this.beginningValidity = subscriptionDTO.getBeginningValidity();
+        this.endValidity = subscriptionDTO.getEndValidity();
+    }
+
 
 
 }
