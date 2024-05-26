@@ -11,7 +11,9 @@ import java.util.Date;
 @AllArgsConstructor
 public class SubscriptionDTO {
 
-    private Long subscriptionId;
+    private Long subscriptionCode;
+    private Long appId;
+    private Long clientId;
     private Date beginningValidity;
     private Date EndValidity;
 }
