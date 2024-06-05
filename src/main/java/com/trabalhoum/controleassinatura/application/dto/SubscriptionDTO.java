@@ -1,5 +1,6 @@
 package com.trabalhoum.controleassinatura.application.dto;
 
+import com.trabalhoum.controleassinatura.domain.entities.enums.SubscriptionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,6 @@ public class SubscriptionDTO {
     private Long clientId;
     private Date beginningValidity;
     private Date endValidity;
+    private SubscriptionStatus status;
 
 }

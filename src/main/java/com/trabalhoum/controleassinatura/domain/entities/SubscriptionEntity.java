@@ -1,6 +1,7 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
 import com.trabalhoum.controleassinatura.application.dto.SubscriptionDTO;
+import com.trabalhoum.controleassinatura.domain.entities.enums.SubscriptionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,12 +36,17 @@ public class SubscriptionEntity {
     @Column(name = "end_validity", nullable = false)
     private Date endValidity;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private SubscriptionStatus status;
+
 
     public SubscriptionEntity(SubscriptionDTO subscriptionDTO){
         this.clientId = subscriptionDTO.getClientId();
         this.appId = subscriptionDTO.getAppId();
         this.beginningValidity = subscriptionDTO.getBeginningValidity();
         this.endValidity = subscriptionDTO.getEndValidity();
+        this.status = subscriptionDTO.getStatus();
     }
 
 

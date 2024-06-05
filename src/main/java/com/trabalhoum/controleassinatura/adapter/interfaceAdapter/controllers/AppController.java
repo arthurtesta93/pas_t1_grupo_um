@@ -63,6 +63,7 @@ public class AppController {
     /*
     * NOT WORKING YET!!!
     */
+
     @PatchMapping(value = "/aplicativos/{id}")
     public ResponseEntity<?> upDate(@PathVariable ("id") Long id, @RequestBody AppDTO appDTO){
         AppDTO appToUpdate;

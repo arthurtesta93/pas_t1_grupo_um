@@ -5,6 +5,7 @@ import com.trabalhoum.controleassinatura.application.dto.SubscriptionDTO;
 import com.trabalhoum.controleassinatura.domain.entities.SubscriptionEntity;
 import com.trabalhoum.controleassinatura.application.service.SubscriptionService;
 import com.trabalhoum.controleassinatura.application.utils.ValidationUtil;
+import com.trabalhoum.controleassinatura.domain.entities.enums.SubscriptionStatus;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,29 @@ public class SubscriptionController {
         return ResponseEntity.ok().build();
 
     }
+
+    @GetMapping("/assinaturas/tipo")
+    public ResponseEntity<List<SubscriptionEntity>> getByStatus(@RequestParam SubscriptionStatus status) {
+        List<SubscriptionEntity> subscriptions = subscriptionService.getAllByStatus(status);
+        return ResponseEntity.ok(subscriptions);
+    }
+
+    @GetMapping("/asscli/{id}")
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        SubscriptionEntity subscriptionEntity = subscriptionService.getById(id);
+        return ResponseEntity.ok(subscriptionEntity);
+    }
+
+    @GetMapping("/assapp/{appId}")
+    public ResponseEntity<?> getByAppId(@PathVariable Long appId) {
+        List<SubscriptionEntity> subscriptionEntity = subscriptionService.getByAppId(appId);
+        return ResponseEntity.ok(subscriptionEntity);
+    }
+
+
+
+
+
 
 
 

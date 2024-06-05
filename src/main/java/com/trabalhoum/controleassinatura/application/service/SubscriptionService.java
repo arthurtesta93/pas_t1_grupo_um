@@ -7,6 +7,7 @@ import com.trabalhoum.controleassinatura.application.dto.SubscriptionDTO;
 import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
 import com.trabalhoum.controleassinatura.domain.entities.ClientEntity;
 import com.trabalhoum.controleassinatura.domain.entities.SubscriptionEntity;
+import com.trabalhoum.controleassinatura.domain.entities.enums.SubscriptionStatus;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,19 @@ public class SubscriptionService {
 
     public List<SubscriptionEntity> getAll() {
         return subscriptionRepository.findAll();
+    }
+
+    // filter subscriptions by status
+    public List<SubscriptionEntity> getAllByStatus(SubscriptionStatus status) {
+    return subscriptionRepository.findAllByStatus(status);
+    }
+
+    public SubscriptionEntity getById(Long id) {
+        return subscriptionRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Subscription not found"));
+    }
+
+    public List<SubscriptionEntity> getByAppId(Long appId) {
+        return subscriptionRepository.findAllByAppId(appId);
     }
 }
 
