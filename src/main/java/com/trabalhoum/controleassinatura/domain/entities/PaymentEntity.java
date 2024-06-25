@@ -1,8 +1,18 @@
 package com.trabalhoum.controleassinatura.domain.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Date;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "payment")
 public class PaymentEntity {
 
@@ -11,9 +21,17 @@ public class PaymentEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long paymentCode;
 
-    @Column(name = "subscription_id", nullable = false)
-    private Long subcriptionCode;
+    @ManyToOne
+    @JoinColumn(name = "subscription", nullable = false)
+    private SubscriptionEntity subscription;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userCode;
+    @Column(name = "payment_value", nullable = false, precision = 2)
+    private Double paymentValue;
+
+    @Column(name = "payment_date", nullable = false)
+    private Date paymentDate;
+
+    @Column(name = "coupon")
+    private Boolean coupon;
+
 }
