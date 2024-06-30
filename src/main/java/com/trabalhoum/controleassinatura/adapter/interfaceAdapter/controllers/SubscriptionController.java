@@ -41,6 +41,12 @@ public class SubscriptionController {
 
     }
 
+    @PutMapping("/assinaturas/{id}")
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestParam SubscriptionStatus status) {
+        SubscriptionEntity subscriptionEntity = subscriptionService.updateStatus(id, status);
+        return ResponseEntity.ok(subscriptionEntity);
+    }
+
     @GetMapping("/assinaturas/tipo")
     public ResponseEntity<List<SubscriptionEntity>> getByStatus(@RequestParam SubscriptionStatus status) {
         List<SubscriptionEntity> subscriptions = subscriptionService.getAllByStatus(status);
@@ -58,6 +64,7 @@ public class SubscriptionController {
         List<SubscriptionEntity> subscriptionEntity = subscriptionService.getByAppId(appId);
         return ResponseEntity.ok(subscriptionEntity);
     }
+
 
 
 

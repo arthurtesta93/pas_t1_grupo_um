@@ -8,6 +8,8 @@ import com.trabalhoum.controleassinatura.domain.entities.AppEntity;
 import com.trabalhoum.controleassinatura.domain.entities.ClientEntity;
 import com.trabalhoum.controleassinatura.domain.entities.SubscriptionEntity;
 import com.trabalhoum.controleassinatura.domain.entities.enums.SubscriptionStatus;
+import com.trabalhoum.controleassinatura.messaging.rabbitmq.Producer;
+
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ public class SubscriptionService {
     private ClientRepository clientRepository;
     private AppRepository appRepository;
     private ModelMapper modelMapper;
+    private Producer producer;
 
     /*
      * Method Save: Save the SubscriptionEntity passed by parameter in the database.
@@ -33,6 +36,7 @@ public class SubscriptionService {
             List<AppEntity> appList = appRepository.findAll();
             for (AppEntity app : appList) {
                 if (client.getClientId().equals(subscriptionEntity.getClientId()) && (app.getId().equals(subscriptionEntity.getAppId()))) {
+                    producer.sendMessage(modelMapper.map(subscriptionEntity, SubscriptionDTO.class)); //FANOUT MESSAGE
                     return modelMapper.map(subscriptionRepository.save(subscriptionEntity), SubscriptionDTO.class);
                 }
             }
@@ -42,6 +46,14 @@ public class SubscriptionService {
 
     public List<SubscriptionEntity> getAll() {
         return subscriptionRepository.findAll();
+    }
+
+    //update subscription status
+    public SubscriptionEntity updateStatus(Long id, SubscriptionStatus status) {
+        SubscriptionEntity subscription = getById(id);
+        subscription.setStatus(status);
+        producer.sendMessage(modelMapper.map(subscription, SubscriptionDTO.class)); //FANOUT MESSAGE
+        return subscriptionRepository.save(subscription);
     }
 
     // filter subscriptions by status
