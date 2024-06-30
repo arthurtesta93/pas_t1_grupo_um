@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class Receiver {
 
-    public static final String QUEUENAME = "conversions.v1.conversion-request.save-history";
     private static Logger logger = LogManager.getLogger(Receiver.class);
 
     @RabbitListener(queues = "#{RabbitMQConfig.getQueueName()}")
     public void receive(SubscriptionStatusRequestDTO dto) {
         logger.info("Mensagem recebida com a atualização da assinatura: {}", dto);
+        //TODO implementar solicitação de status de assinatura
     }
 
 
